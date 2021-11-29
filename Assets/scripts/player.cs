@@ -6,10 +6,21 @@ public class player : MonoBehaviour
 {
 
     private playerHealth healthSystem;
+    private playerThirst thirstSystem;
+    private playerHunger hungerSystem;
+    private playerInventory inventory;
+
     // Start is called before the first frame update
     void Start()
     {
         healthSystem = new playerHealth(100);
+        thirstSystem = new playerThirst(100);
+        hungerSystem = new playerHunger(100);
+    }
+
+    private void Awake()
+    {
+        inventory = new playerInventory(5);
     }
 
     public void debugHealth()
