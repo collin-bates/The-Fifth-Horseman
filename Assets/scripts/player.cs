@@ -9,7 +9,10 @@ public class player : MonoBehaviour
     private playerHunger hungerSystem;
     private playerInventory inventory;
 
+
+    public float playerRotate;
     public float speed;
+    public float smoothing = 2f;
     Vector3 movement;
     Rigidbody playerRigidbody;
 
@@ -52,10 +55,35 @@ public class player : MonoBehaviour
 
     private void FixedUpdate()
     {
-        float h = Input.GetAxis("Horizontal");
-        float v = Input.GetAxis("Vertical");
 
-        Move(h, v);
+        float h = 0.0f;
+        float v = 0.0f;
+
+        if (Input.GetKey(KeyCode.W))
+        {
+            playerRigidbody.position += transform.forward * Time.deltaTime * speed;
+        }
+        else if (Input.GetKey(KeyCode.S))
+        {
+            playerRigidbody.position += transform.forward * Time.deltaTime * speed * -1;
+        }
+        else if (Input.GetKey(KeyCode.A))
+        {
+            playerRigidbody.position += transform.right * Time.deltaTime * speed * -1;
+        }
+        else if (Input.GetKey(KeyCode.D))
+        {
+            playerRigidbody.position += transform.right * Time.deltaTime * speed;
+        }
+
+        float y = smoothing * Input.GetAxis("Mouse Y");
+        playerRotate = smoothing * Input.GetAxis("Mouse X");
+        transform.Rotate(0, playerRotate, 0);
+
+        Debug.Log("H" + h);
+        Debug.Log("V" + v);
+
+       
     }
 
     // Update is called once per frame

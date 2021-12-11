@@ -18,6 +18,9 @@ public class cameraSettings : MonoBehaviour
     void FixedUpdate()
     {
         Vector3 playerCamPos = player.position + offset;
+        offset = Quaternion.AngleAxis(Input.GetAxis("Mouse X") * smoothing, Vector3.up) * offset;
+
+        transform.LookAt(player.position);
         transform.position = Vector3.Lerp(transform.position, playerCamPos, smoothing * Time.deltaTime);
     }
 }
