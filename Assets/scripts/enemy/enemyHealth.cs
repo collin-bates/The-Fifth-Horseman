@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class enemyHealth : MonoBehaviour
 {
-    private int health;
-    private int maxHealth;
+    public int health;
+    public int maxHealth;
+    public bool isDead = false;
 
-    public enemyHealth(int total)
+    void Awake()
     {
-        health = total;
-        maxHealth = total;
-    }
+        health = maxHealth;
 
+    }
 
     public int getHealth()
     {
@@ -30,10 +30,14 @@ public class enemyHealth : MonoBehaviour
     {
         if (health - damage > 0)
         {
-
+            health -= damage;
         }
-        health -= damage;
+        else
+        {
+            isDead = true;
+        }
 
+        Debug.Log("Hit");
     }
 
     public void addHealth(int heal)
@@ -58,6 +62,13 @@ public class enemyHealth : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if( isDead)
+        {
+            transform.Translate(-Vector3.up * 2.5f * Time.deltaTime);
+            if (transform.position.y < -10f)
+            {
+                Destroy(this.gameObject);
+            }
+        }
     }
 }

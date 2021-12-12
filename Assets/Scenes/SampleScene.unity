@@ -130,9 +130,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 92264660}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: NPC's
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3240,7 +3240,7 @@ GameObject:
   - component: {fileID: 2025440193331438021}
   - component: {fileID: 5769673986077410713}
   - component: {fileID: 7420998304400921815}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Head/body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3258,7 +3258,7 @@ GameObject:
   - component: {fileID: 6965614695810108124}
   - component: {fileID: 6919045971963204752}
   - component: {fileID: 4528245675790512680}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: highrib
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3304,7 +3304,7 @@ GameObject:
   - component: {fileID: 95465898335284963}
   - component: {fileID: 7612729944892116683}
   - component: {fileID: 4763160535208797837}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: left eye.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3451,7 +3451,7 @@ GameObject:
   - component: {fileID: 8631167410061828946}
   - component: {fileID: 483367602707671857}
   - component: {fileID: 6261398449398469411}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: helm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3469,7 +3469,7 @@ GameObject:
   - component: {fileID: 4091330955800948838}
   - component: {fileID: 5727732470357926367}
   - component: {fileID: 1493879196944276714}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: helmet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3487,7 +3487,7 @@ GameObject:
   - component: {fileID: 1629360416161925829}
   - component: {fileID: 6527570041679867545}
   - component: {fileID: 7817060476905095127}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Head/body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3612,7 +3612,7 @@ GameObject:
   - component: {fileID: 1998730428948067521}
   - component: {fileID: 1431295689997095552}
   - component: {fileID: 7571125747966904160}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: glasses
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3682,7 +3682,7 @@ GameObject:
   - component: {fileID: 6122173222261344793}
   - component: {fileID: 7656234338421696751}
   - component: {fileID: 8373720208359390768}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cone.003
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3704,7 +3704,7 @@ GameObject:
   - component: {fileID: 1458848112759853747}
   - component: {fileID: 1458848112759853749}
   - component: {fileID: 1458848112759853750}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Conquest
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3723,6 +3723,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78f0fc3faf4f9e04ebc3ea7d74612938, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  health: 100
+  maxHealth: 0
+  isDead: 0
 --- !u!114 &1458848112759853746
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3799,6 +3802,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 799ce693bc5ce6740a82102b85b332cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  visionRange: 10
+  hearingRange: 20
+  wanderDistance: 10
+  idleTimeRange: {x: 0, y: 0}
+  psychicLevels: 0.2
+  timer: 0
 --- !u!1 &1471884187755676835
 GameObject:
   m_ObjectHideFlags: 0
@@ -3810,7 +3819,7 @@ GameObject:
   - component: {fileID: 6334967989821364520}
   - component: {fileID: 6411661207203735112}
   - component: {fileID: 2692507755204750389}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: LEft leg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4058,7 +4067,7 @@ GameObject:
   - component: {fileID: 2214001990562183603}
   - component: {fileID: 2214001990562183605}
   - component: {fileID: 2214001990562183606}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: famine
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -4077,6 +4086,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78f0fc3faf4f9e04ebc3ea7d74612938, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  health: 100
+  maxHealth: 0
+  isDead: 0
 --- !u!114 &2214001990562183602
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4123,6 +4135,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 799ce693bc5ce6740a82102b85b332cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  visionRange: 10
+  hearingRange: 20
+  wanderDistance: 10
+  idleTimeRange: {x: 0, y: 0}
+  psychicLevels: 0.2
+  timer: 0
 --- !u!54 &2214001990562183605
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -4277,7 +4295,7 @@ GameObject:
   - component: {fileID: 818681665786166000}
   - component: {fileID: 8059404423638431792}
   - component: {fileID: 3818666103166566555}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: hat
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4387,7 +4405,7 @@ GameObject:
   - component: {fileID: 8614220772904192748}
   - component: {fileID: 968953638984218836}
   - component: {fileID: 6626966836768118213}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: right leg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4458,7 +4476,7 @@ GameObject:
   - component: {fileID: 9010776596160012780}
   - component: {fileID: 573368405818758100}
   - component: {fileID: 5868435022488288965}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: right leg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4476,7 +4494,7 @@ GameObject:
   - component: {fileID: 5093674970356388653}
   - component: {fileID: 7161545035136177873}
   - component: {fileID: 4771613885912169436}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4508,7 +4526,7 @@ GameObject:
   - component: {fileID: 3769833895097307470}
   - component: {fileID: 4634329305472107400}
   - component: {fileID: 9186492112423723800}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Hat
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4534,7 +4552,7 @@ GameObject:
   - component: {fileID: 6151768663387967862}
   - component: {fileID: 6164338449318905429}
   - component: {fileID: 7066921966507422876}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: eye
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4609,7 +4627,7 @@ GameObject:
   - component: {fileID: 8201314306604342058}
   - component: {fileID: 9133427448258045002}
   - component: {fileID: 245179771045572151}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: LEft leg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4649,7 +4667,7 @@ GameObject:
   - component: {fileID: 2435423935082353261}
   - component: {fileID: 1766359349125160625}
   - component: {fileID: 7257210407150027470}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: left leg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4760,7 +4778,7 @@ GameObject:
   - component: {fileID: 3119645028501879149}
   - component: {fileID: 1298223949342062001}
   - component: {fileID: 7940307799144769998}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: left leg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4903,7 +4921,7 @@ GameObject:
   - component: {fileID: 6539392076644757097}
   - component: {fileID: 6387305167005576164}
   - component: {fileID: 7222436717081538041}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: lowrib
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4990,7 +5008,7 @@ GameObject:
   - component: {fileID: 1519675767604716590}
   - component: {fileID: 8065752436421039638}
   - component: {fileID: 4137279814501169927}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: right leg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5016,7 +5034,7 @@ GameObject:
   - component: {fileID: 432036068954633452}
   - component: {fileID: 1482895599971207927}
   - component: {fileID: 4746071108513806662}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cone.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5177,7 +5195,7 @@ GameObject:
   - component: {fileID: 6394075789188959493}
   - component: {fileID: 1492489151011744089}
   - component: {fileID: 2475629258430412823}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Head/body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5234,7 +5252,7 @@ GameObject:
   - component: {fileID: 5666400445748897183}
   - component: {fileID: 2282841179641161687}
   - component: {fileID: 2169314555789826011}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: right eye
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5252,7 +5270,7 @@ GameObject:
   - component: {fileID: 8597129456808680697}
   - component: {fileID: 4482690749575068322}
   - component: {fileID: 8873604083389918380}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: left eye
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5284,7 +5302,7 @@ GameObject:
   - component: {fileID: 6546044513793823209}
   - component: {fileID: 1644385857873262005}
   - component: {fileID: 2323674277453571323}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Head/body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5635,7 +5653,7 @@ GameObject:
   - component: {fileID: 6375479445648935328}
   - component: {fileID: 6375479445648935330}
   - component: {fileID: 6375479445648935329}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Satan
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -5654,6 +5672,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78f0fc3faf4f9e04ebc3ea7d74612938, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  health: 100
+  maxHealth: 100
+  isDead: 0
 --- !u!114 &6375479445648935326
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5678,6 +5699,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 799ce693bc5ce6740a82102b85b332cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  visionRange: 10
+  hearingRange: 20
+  wanderDistance: 10
+  idleTimeRange: {x: 0, y: 0}
+  psychicLevels: 0.2
+  timer: 0
 --- !u!195 &6375479445648935328
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -5714,7 +5741,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 84
   m_CollisionDetection: 0
 --- !u!136 &6375479445648935330
 CapsuleCollider:
@@ -5774,7 +5801,8 @@ GameObject:
   - component: {fileID: 6493673922128401780}
   - component: {fileID: 6493673922128401779}
   - component: {fileID: 6493673922128401781}
-  m_Layer: 0
+  - component: {fileID: 6493673922128401782}
+  m_Layer: 9
   m_Name: Death
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -5793,6 +5821,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78f0fc3faf4f9e04ebc3ea7d74612938, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  health: 100
+  maxHealth: 0
+  isDead: 0
 --- !u!114 &6493673922128401778
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5839,6 +5870,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 799ce693bc5ce6740a82102b85b332cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  visionRange: 10
+  hearingRange: 20
+  wanderDistance: 10
+  idleTimeRange: {x: 0, y: 0}
+  psychicLevels: 0.2
+  timer: 0
 --- !u!136 &6493673922128401781
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -5853,6 +5890,22 @@ CapsuleCollider:
   m_Height: 10
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!54 &6493673922128401782
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6493673922128401776}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!4 &6510647035676647076
 Transform:
   m_ObjectHideFlags: 0
@@ -6028,7 +6081,7 @@ GameObject:
   - component: {fileID: 7709542251380046705}
   - component: {fileID: 4319115936025033017}
   - component: {fileID: 4198523505228826933}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: right eye
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6046,7 +6099,7 @@ GameObject:
   - component: {fileID: 5985830685527884311}
   - component: {fileID: 1903726897317864524}
   - component: {fileID: 6880248007444165186}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: left eye
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6103,7 +6156,7 @@ GameObject:
   - component: {fileID: 9117232021246463751}
   - component: {fileID: 3642526733540993883}
   - component: {fileID: 315686882185853461}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Head/body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6129,7 +6182,7 @@ GameObject:
   - component: {fileID: 7328456026213437959}
   - component: {fileID: 8783291252702229892}
   - component: {fileID: 5031737161823936923}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: eye
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6314,7 +6367,7 @@ GameObject:
   - component: {fileID: 3687393892231538220}
   - component: {fileID: 5320430256377615380}
   - component: {fileID: 2256349766327908613}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: right leg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6371,7 +6424,7 @@ GameObject:
   - component: {fileID: 7000785225204035252}
   - component: {fileID: 7299703840106507758}
   - component: {fileID: 5296365356440853709}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: right eye.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6389,7 +6442,7 @@ GameObject:
   - component: {fileID: 6510647035676647076}
   - component: {fileID: 3306164935616122653}
   - component: {fileID: 8513622020222775848}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: midrib
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6774,7 +6827,7 @@ GameObject:
   - component: {fileID: 7316893536120846976}
   - component: {fileID: 2087405501066894636}
   - component: {fileID: 2479461436721657299}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: armor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6932,7 +6985,7 @@ GameObject:
   - component: {fileID: 6261573024094216302}
   - component: {fileID: 1896096360577681997}
   - component: {fileID: 8717313810986384115}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cone.002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7019,7 +7072,7 @@ GameObject:
   - component: {fileID: 8945435549465876342}
   - component: {fileID: 8945435549465876344}
   - component: {fileID: 8945435549465876339}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: war
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -7052,6 +7105,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78f0fc3faf4f9e04ebc3ea7d74612938, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  health: 100
+  maxHealth: 0
+  isDead: 0
 --- !u!114 &8945435549465876341
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7098,6 +7154,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 799ce693bc5ce6740a82102b85b332cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  visionRange: 10
+  hearingRange: 20
+  wanderDistance: 10
+  idleTimeRange: {x: 0, y: 0}
+  psychicLevels: 0.2
+  timer: 0
 --- !u!54 &8945435549465876344
 Rigidbody:
   m_ObjectHideFlags: 0
