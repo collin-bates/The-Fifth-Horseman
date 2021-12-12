@@ -3724,7 +3724,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
-  maxHealth: 0
+  maxHealth: 100
   isDead: 0
 --- !u!114 &1458848112759853746
 MonoBehaviour:
@@ -4087,7 +4087,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
-  maxHealth: 0
+  maxHealth: 100
   isDead: 0
 --- !u!114 &2214001990562183602
 MonoBehaviour:
@@ -5822,7 +5822,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
-  maxHealth: 0
+  maxHealth: 100
   isDead: 0
 --- !u!114 &6493673922128401778
 MonoBehaviour:
@@ -7106,7 +7106,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
-  maxHealth: 0
+  maxHealth: 100
   isDead: 0
 --- !u!114 &8945435549465876341
 MonoBehaviour:
