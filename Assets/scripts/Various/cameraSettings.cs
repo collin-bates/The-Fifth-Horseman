@@ -9,6 +9,7 @@ public class cameraSettings : MonoBehaviour
     public float minTurnAngle = -90.0f;
     public float maxTurnAngle = 90.0f;
     private float rotX;
+    public bool pauseMovement = false;
 
     Vector3 offset;
 
@@ -19,9 +20,7 @@ public class cameraSettings : MonoBehaviour
 
     void FixedUpdate()
     {
-        //MouseAiming();
-        Debug.Log("offset: " + offset);
-
+        if( !player.GetComponent<player>().pauseMovement) { 
         transform.position = player.transform.position + offset;
         float y = Input.GetAxis("Mouse X") * turnSpeed;
         rotX += Input.GetAxis("Mouse Y") * turnSpeed / 2;
@@ -29,6 +28,6 @@ public class cameraSettings : MonoBehaviour
         rotX = Mathf.Clamp(rotX, minTurnAngle, maxTurnAngle);
         // rotate the camera
         transform.eulerAngles = new Vector3(-rotX, transform.eulerAngles.y + y, 0);
+        }
     }
-
 }

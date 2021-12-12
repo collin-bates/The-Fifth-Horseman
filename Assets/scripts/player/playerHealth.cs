@@ -1,18 +1,29 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.UI;
+using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class playerHealth : MonoBehaviour
 {
     private int health;
-    private int maxHealth;
+    private int maxHealth = 100;
+    public Slider healthSlider;
 
-    public playerHealth(int total)
+    void Awake()
     {
-        health = total;
-        maxHealth = total;
+        ResetPlayer();
+        
+    }
+    void Start()
+    {
+        ResetPlayer();
+        healthSlider.value = health;
     }
 
+    public void ResetPlayer()
+    {
+        health = maxHealth / 5;
+    }
 
     public int getHealth()
     {
@@ -24,21 +35,22 @@ public class playerHealth : MonoBehaviour
         return maxHealth;
     }
 
-
-
     public void removeHealth( int damage)
     {
-        if( health - damage > 0)
+        if (health - damage > 0)
         {
-            
+            health -= damage;
         }
-health -= damage;
+        else
+        {
+            GetComponent<player>().isDead = true;
+        }
         
     }
 
-    public void addHealth( int heal)
+    public void addHealth(int heal)
     {
-        if( health + heal < maxHealth)
+        if (health + heal < maxHealth)
         {
             health += heal;
         }
@@ -46,18 +58,11 @@ health -= damage;
         {
             health = maxHealth;
         }
-
+        healthSlider.value = health;
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
     void Update()
     {
-        
+        Debug.Log("health " + health);
     }
 }

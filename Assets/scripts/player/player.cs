@@ -4,79 +4,88 @@ using UnityEngine;
 
 public class player : MonoBehaviour
 {
-    private playerHealth healthSystem;
-    private playerThirst thirstSystem;
-    private playerHunger hungerSystem;
 
-
+    public InventoryObject inventory;
+    public bool pauseMovement = false;
     public float turnSpeed = 4.0f;
     public float speed;
+    public float initialSpeed;
     Vector3 movement;
     Rigidbody playerRigidbody;
+    public int selectedItem = 1;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        healthSystem = new playerHealth(100);
-        thirstSystem = new playerThirst(100);
-        hungerSystem = new playerHunger(100);
-    }
+    public bool isDead;
 
     private void Awake()
     {
         playerRigidbody = GetComponent<Rigidbody>();
     }
 
-    public void debugHealth()
-    {
-        Debug.Log("Max Health: " + healthSystem.getMaxHealth());
-        Debug.Log("Current Health: " + healthSystem.getHealth());
-    }
-
-    public void debugDamage( int damage)
-    {
-        healthSystem.removeHealth(damage);
-    }
-
-    public void debugHeal( int heal)
-    {
-        healthSystem.addHealth(10);
-    }
-
-    void Move(float h, float v)
-    {
-        movement.Set(h, 0f, v);
-        movement = movement.normalized * speed * Time.deltaTime;
-        playerRigidbody.MovePosition(transform.position + movement);
-    }
-
     private void FixedUpdate()
     {
-
-                if (Input.GetKey(KeyCode.W))
+        if (Input.GetKey(KeyCode.Escape))
         {
-            playerRigidbody.position += transform.forward * Time.deltaTime * speed;
-        }
-        else if (Input.GetKey(KeyCode.S))
-        {
-            playerRigidbody.position += transform.forward * Time.deltaTime * speed * -1;
-        }
-        else if (Input.GetKey(KeyCode.A))
-        {
-            playerRigidbody.position += transform.right * Time.deltaTime * speed * -1;
-        }
-        else if (Input.GetKey(KeyCode.D))
-        {
-            playerRigidbody.position += transform.right * Time.deltaTime * speed;
+            if (pauseMovement)
+            {
+                pauseMovement = false;
+            }
+            else
+            {
+                pauseMovement = true;
+            }
         }
 
-        float y = Input.GetAxis("Mouse X") * turnSpeed;
-        transform.eulerAngles = new Vector3(0, transform.eulerAngles.y + y, 0);
-    }
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            speed = initialSpeed * 2;
+        }
+        else
+        {
+            speed = initialSpeed;
+        }
 
-    // Update is called once per frame
-    void Update()
-    {
+        if (!pauseMovement)
+        {
+            if (Input.GetKey(KeyCode.W))
+            {
+                playerRigidbody.position += transform.forward * Time.deltaTime * speed;
+            }
+            else if (Input.GetKey(KeyCode.S))
+            {
+                playerRigidbody.position += transform.forward * Time.deltaTime * speed * -1;
+            }
+            else if (Input.GetKey(KeyCode.A))
+            {
+                playerRigidbody.position += transform.right * Time.deltaTime * speed * -1;
+            }
+            else if (Input.GetKey(KeyCode.D))
+            {
+                playerRigidbody.position += transform.right * Time.deltaTime * speed;
+            }
 
+            float y = Input.GetAxis("Mouse X") * turnSpeed;
+            transform.eulerAngles = new Vector3(0, transform.eulerAngles.y + y, 0);
+        }
+
+        if(Input.GetKey(KeyCode.Alpha1))
+        {
+            selectedItem = 1;
+        }
+        if (Input.GetKey(KeyCode.Alpha2))
+        {
+            selectedItem = 2;
+        }
+        if (Input.GetKey(KeyCode.Alpha3))
+        {
+            selectedItem = 3;
+        }
+        if (Input.GetKey(KeyCode.Alpha4))
+        {
+            selectedItem = 4;
+        }
+        if (Input.GetKey(KeyCode.Alpha5))
+        {
+            selectedItem = 5;
+        }
     }
 }

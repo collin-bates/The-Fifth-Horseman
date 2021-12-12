@@ -1,18 +1,29 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.UI;
+using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class playerHunger : MonoBehaviour
 {
     private int hunger;
-    private int maxHunger;
+    private int maxHunger = 100;
+    public Slider HungerSlider;
 
-    public playerHunger(int total)
+    void Awake()
     {
-        hunger = total;
-        maxHunger = total;
+        ResetPlayer();
     }
 
+    void Start()
+    {
+        ResetPlayer();
+        HungerSlider.value = hunger;
+    }
+
+    public void ResetPlayer()
+    {
+        hunger = maxHunger / 5;
+    }
 
     public int getHunger()
     {
@@ -30,10 +41,14 @@ public class playerHunger : MonoBehaviour
     {
         if (hunger - damage > 0)
         {
-
+            hunger -= damage;
         }
-        hunger -= damage;
+        else
+        {
+            GetComponent<player>().isDead = true;
+        }
 
+        HungerSlider.value = hunger;
     }
 
     public void addHunger(int food)
@@ -46,16 +61,8 @@ public class playerHunger : MonoBehaviour
         {
             hunger = maxHunger;
         }
-
+        HungerSlider.value = hunger;
     }
-
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
     // Update is called once per frame
     void Update()
     {
