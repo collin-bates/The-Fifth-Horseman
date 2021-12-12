@@ -19,5 +19,6 @@ MonoBehaviour:
   rof: 0
   maxBullets: 0
   healthValue: 0
-  hungerValue: 50
+  hungerValue: 0
+  thirstValue: 50
   description: 

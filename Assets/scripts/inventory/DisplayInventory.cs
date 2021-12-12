@@ -46,7 +46,6 @@ public class DisplayInventory : MonoBehaviour
         {
             selectedObject = 5;
         }
-        Debug.Log("thing: " + selectedObject);
     }
 
     public void CreateDisplay()
