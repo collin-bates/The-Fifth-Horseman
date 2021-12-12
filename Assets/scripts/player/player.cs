@@ -7,12 +7,10 @@ public class player : MonoBehaviour
     private playerHealth healthSystem;
     private playerThirst thirstSystem;
     private playerHunger hungerSystem;
-    private playerInventory inventory;
 
 
-    public float playerRotate;
+    public float turnSpeed = 4.0f;
     public float speed;
-    public float smoothing = 2f;
     Vector3 movement;
     Rigidbody playerRigidbody;
 
@@ -26,7 +24,6 @@ public class player : MonoBehaviour
 
     private void Awake()
     {
-        inventory = new playerInventory(5);
         playerRigidbody = GetComponent<Rigidbody>();
     }
 
@@ -56,10 +53,7 @@ public class player : MonoBehaviour
     private void FixedUpdate()
     {
 
-        float h = 0.0f;
-        float v = 0.0f;
-
-        if (Input.GetKey(KeyCode.W))
+                if (Input.GetKey(KeyCode.W))
         {
             playerRigidbody.position += transform.forward * Time.deltaTime * speed;
         }
@@ -76,14 +70,8 @@ public class player : MonoBehaviour
             playerRigidbody.position += transform.right * Time.deltaTime * speed;
         }
 
-        float y = smoothing * Input.GetAxis("Mouse Y");
-        playerRotate = smoothing * Input.GetAxis("Mouse X");
-        transform.Rotate(0, playerRotate, 0);
-
-        Debug.Log("H" + h);
-        Debug.Log("V" + v);
-
-       
+        float y = Input.GetAxis("Mouse X") * turnSpeed;
+        transform.eulerAngles = new Vector3(0, transform.eulerAngles.y + y, 0);
     }
 
     // Update is called once per frame
