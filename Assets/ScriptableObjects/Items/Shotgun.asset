@@ -14,8 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefab: {fileID: 4784755784630676747, guid: 68cdb23e7fba20c4cbc555aefd0d1a39, type: 3}
   type: 2
-  description: 
-  range: 0
-  damage: 0
-  rof: 0
+  range: 15
+  damage: 60
+  rof: 30
   maxBullets: 0
+  healthValue: 0
+  hungerValue: 0
+  description: 

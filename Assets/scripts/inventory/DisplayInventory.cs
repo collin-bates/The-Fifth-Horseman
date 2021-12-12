@@ -6,6 +6,9 @@ using TMPro;
 public class DisplayInventory : MonoBehaviour
 {
     public InventoryObject inventory;
+    public GameObject currentItem;
+    public GameObject player;
+    public int selectedObject;
     public int start;
     public int SpaceBetween;
     public int numberOf;
@@ -22,6 +25,28 @@ public class DisplayInventory : MonoBehaviour
     void Update()
     {
         UpdateDisplay();
+
+        if (Input.GetKey(KeyCode.Alpha1))
+        {
+            selectedObject = 1;
+        }
+        if (Input.GetKey(KeyCode.Alpha2))
+        {
+            selectedObject = 2;
+        }
+        if (Input.GetKey(KeyCode.Alpha3))
+        {
+            selectedObject = 3;
+        }
+        if (Input.GetKey(KeyCode.Alpha4))
+        {
+            selectedObject = 4;
+        }
+        if (Input.GetKey(KeyCode.Alpha5))
+        {
+            selectedObject = 5;
+        }
+        Debug.Log("thing: " + selectedObject);
     }
 
     public void CreateDisplay()
@@ -51,6 +76,8 @@ public class DisplayInventory : MonoBehaviour
                 itemsDisplayed.Add(inventory.Container[i], obj);
             }
         }
+        //var otherObj = Instantiate(currentItem, Vector3.zero, Quaternion.identity, transform);
+        //otherObj.GetComponent<RectTransform>().localPosition = GetPosition(selectedObject);
     }
 
     public Vector3 GetPosition(int i)

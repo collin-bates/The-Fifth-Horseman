@@ -1,16 +1,28 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.UI;
+using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class playerThirst : MonoBehaviour
 {
     private int thirst;
-    private int maxThirst;
+    private int maxThirst = 100;
+    public Slider thirstSlider;
 
-    public playerThirst(int total)
+    void Awake()
     {
-        thirst = total;
-        maxThirst = total;
+        ResetPlayer();
+    }
+
+    void Start()
+    {
+        ResetPlayer();
+        thirstSlider.value = thirst;
+    }
+
+    void ResetPlayer()
+    {
+        thirst = maxThirst / 5;
     }
 
     public int getThirst()
@@ -27,10 +39,13 @@ public class playerThirst : MonoBehaviour
     {
         if (thirst - damage > 0)
         {
-
+            thirst -= damage;
         }
-        thirst -= damage;
-
+        else
+        {
+            GetComponent<player>().isDead = true;
+        }
+        thirstSlider.value = thirst;
     }
 
     public void addThirst(int drink)
@@ -43,15 +58,8 @@ public class playerThirst : MonoBehaviour
         {
             thirst = maxThirst;
         }
-
+        thirstSlider.value = thirst;
     }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
     // Update is called once per frame
     void Update()
     {

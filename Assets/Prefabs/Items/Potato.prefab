@@ -45,12 +45,12 @@ PrefabInstance:
     - target: {fileID: 1734673870369014458, guid: de6c99ba526e54644872cf342060cdcd,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 47.42688
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 1734673870369014458, guid: de6c99ba526e54644872cf342060cdcd,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 47.42688
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 1734673870369014458, guid: de6c99ba526e54644872cf342060cdcd,
         type: 3}
@@ -115,7 +115,7 @@ PrefabInstance:
     - target: {fileID: 1734673870369014459, guid: de6c99ba526e54644872cf342060cdcd,
         type: 3}
       propertyPath: m_Name
-      value: Item
+      value: Potato
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: de6c99ba526e54644872cf342060cdcd, type: 3}
