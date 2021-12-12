@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5a538e515aa13240862665784e563c6, type: 3}
   m_Name: Revolver
   m_EditorClassIdentifier: 
-  prefab: {fileID: 0}
+  prefab: {fileID: 4064370132424193158, guid: 3f909ad9d38f2954396f5803173b28e4, type: 3}
   type: 2
   description: 
   range: 0
   damage: 0
   rof: 0
+  maxBullets: 0

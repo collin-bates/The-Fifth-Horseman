@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 454d421d136c7454792910bcc7716e32, type: 3}
   m_Name: Bean
   m_EditorClassIdentifier: 
-  prefab: {fileID: 0}
+  prefab: {fileID: 7957274964669874355, guid: e3853af1d6907624ebf546e4a17d8f0c, type: 3}
   type: 0
   description: 
   healthValue: 0

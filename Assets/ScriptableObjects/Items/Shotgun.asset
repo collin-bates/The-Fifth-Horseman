@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5a538e515aa13240862665784e563c6, type: 3}
   m_Name: Shotgun
   m_EditorClassIdentifier: 
-  prefab: {fileID: 0}
+  prefab: {fileID: 4784755784630676747, guid: 68cdb23e7fba20c4cbc555aefd0d1a39, type: 3}
   type: 2
   description: 
   range: 0
   damage: 0
   rof: 0
+  maxBullets: 0
