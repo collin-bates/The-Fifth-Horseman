@@ -4,71 +4,99 @@ using UnityEngine;
 
 public class enemyHealth : MonoBehaviour
 {
-    public int health;
-    public int maxHealth;
-    public bool isDead = false;
+    public int startingHealth = 100;
+    public float sinkSpeed = 2.5f;
+    public int scoreValue = 10;
+    //public AudioClip deathClip;
+
+    int currentHealth;
+    //Animator anim;
+    //AudioSource enemyAudio;
+    ParticleSystem hitParticles;
+    CapsuleCollider capsuleCollider;
+    EnemyMovement enemyMovement;
 
     void Awake()
     {
-        health = maxHealth;
-
+        //anim = GetComponent<Animator>();
+        //enemyAudio = GetComponent<AudioSource>();
+        hitParticles = GetComponentInChildren<ParticleSystem>();
+        capsuleCollider = GetComponent<CapsuleCollider>();
+        enemyMovement = this.GetComponent<EnemyMovement>();
     }
 
-    public int getHealth()
+    void OnEnable()
     {
-        return health;
+        currentHealth = startingHealth;
+        SetKinematics(false);
     }
 
-    public int getMaxHealth()
+    private void SetKinematics(bool isKinematic)
     {
-        return maxHealth;
+        capsuleCollider.isTrigger = isKinematic;
+        capsuleCollider.attachedRigidbody.isKinematic = isKinematic;
     }
 
-
-
-    public void removeHealth(int damage)
-    {
-        if (health - damage > 0)
-        {
-            health -= damage;
-        }
-        else
-        {
-            isDead = true;
-        }
-
-        Debug.Log("Hit");
-    }
-
-    public void addHealth(int heal)
-    {
-        if (health + heal < maxHealth)
-        {
-            health += heal;
-        }
-        else
-        {
-            health = maxHealth;
-        }
-
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
     void Update()
     {
-        if( isDead)
+        if (IsDead())
         {
-            transform.Translate(-Vector3.up * 2.5f * Time.deltaTime);
+            transform.Translate(-Vector3.up * sinkSpeed * Time.deltaTime);
             if (transform.position.y < -10f)
             {
                 Destroy(this.gameObject);
             }
         }
     }
+
+    public bool IsDead()
+    {
+        return (currentHealth <= 0f);
+    }
+
+    public void TakeDamage(int amount, Vector3 hitPoint)
+    {
+        if (!IsDead())
+        {
+            //enemyAudio.Play();
+            currentHealth -= amount;
+
+            if (IsDead())
+            {
+                
+                Debug.Log("This bitch dead");
+                Death();
+            }
+            else
+            {
+                enemyMovement.GoToPlayer();
+            }
+        }
+
+        //hitParticles.transform.position = hitPoint;
+        //hitParticles.Play();
+    }
+
+    void Death()
+    {
+        //EventManager.TriggerEvent("Sound", this.transform.position);
+        //anim.SetTrigger("Dead");
+
+        //enemyAudio.clip = deathClip;
+        //enemyAudio.Play();
+    }
+
+    public void StartSinking()
+    {
+        GetComponent<UnityEngine.AI.NavMeshAgent>().enabled = false;
+        SetKinematics(true);
+
+        //ScoreManager.score += scoreValue;
+    }
+
+    public int CurrentHealth()
+    {
+        return currentHealth;
+    }
 }
+
