@@ -68,7 +68,7 @@ public class useItem : MonoBehaviour
             // If the EnemyHealth component exist...
             
                 // ... the enemy should take damage.
-                enemyHealth.removeHealth(inventory.Container[playerScript.selectedItem].item.damage);
+                enemyHealth.TakeDamage(inventory.Container[playerScript.selectedItem].item.damage, shootHit.point);
 
             Debug.Log("Boom");
             // Set the second position of the line renderer to the point the raycast hit.
