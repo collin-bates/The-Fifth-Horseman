@@ -144,6 +144,11 @@ public class player : MonoBehaviour
                 inventory.AddItem(other.GetComponent<Item>().item, quantity);
             }
         }
+
+        if(other.CompareTag("finalFight"))
+        {
+            inRing = true;
+        }
     }
 
     private void OnTriggerExit(Collider other)
