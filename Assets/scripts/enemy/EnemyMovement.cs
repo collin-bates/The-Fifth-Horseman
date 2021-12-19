@@ -51,12 +51,13 @@ public class EnemyMovement : MonoBehaviour
         {
             nav.enabled = false;
         }
-        if(player.GetComponent<player>().inRing)
+        if(player.GetComponent<player>().inRing && !enemyHealth.IsDead())
         {
             nav.enabled = true;
             Debug.Log("This bitch moving");
 
             LookForPlayer();
+            GoToPlayer();
             WanderOrIdle();
         }
     }
