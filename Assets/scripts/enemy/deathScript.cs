@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class EnemyMovement : MonoBehaviour
+public class deathScript : MonoBehaviour
 {
+    public GameObject gameHandler;
     public float visionRange = 10f;
     public float hearingRange = 20f;
     public float wanderDistance = 10f;
@@ -23,11 +24,17 @@ public class EnemyMovement : MonoBehaviour
 
     void Awake()
     {
+
         player = GameObject.FindGameObjectWithTag("Player").transform;
         playerHealth = player.GetComponent<playerHealth>();
         enemyHealth = GetComponent<enemyHealth>();
         nav = GetComponent<NavMeshAgent>();
 
+    }
+
+    private void Start()
+    {
+        this.gameObject.SetActive(false);
     }
 
     void OnEnable()
@@ -49,15 +56,20 @@ public class EnemyMovement : MonoBehaviour
     {
         if (enemyHealth.IsDead())
         {
+            gameHandler.GetComponent<GameHandler>().deathDead = true;
             nav.enabled = false;
         }
-        if(player.GetComponent<player>().inRing && !enemyHealth.IsDead())
+        if ( !enemyHealth.IsDead() && enemyHealth.currentHealth > 50)
         {
             nav.enabled = true;
 
             LookForPlayer();
             GoToPlayer();
             WanderOrIdle();
+        }else if ( !enemyHealth.IsDead())
+        {
+            destination.Set(nav.transform.position.x - player.transform.position.x, 0, nav.transform.position.z - player.transform.position.z);
+            SetDestination(destination);
         }
     }
 

@@ -9,6 +9,7 @@ TagManager:
   - shop
   - riflePickup
   - purchase
+  - finalFight
   layers:
   - Default
   - TransparentFX
