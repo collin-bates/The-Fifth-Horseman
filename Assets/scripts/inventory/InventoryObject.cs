@@ -24,6 +24,12 @@ public class InventoryObject : ScriptableObject
             Container.Add(new InventorySlot(_item, _amount));
         }
     }
+
+    public void removeCoin(int amount)
+    {
+
+        Container[0].amount -= amount;
+    }
 }
 
 [System.Serializable]

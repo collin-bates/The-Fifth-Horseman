@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class enemyHealth : MonoBehaviour
 {
+    public GameObject player;
     public int startingHealth = 100;
     public float sinkSpeed = 2.5f;
     public int scoreValue = 10;
@@ -67,8 +68,9 @@ public class enemyHealth : MonoBehaviour
                 Debug.Log("This bitch dead");
                 Death();
             }
-            else
+            else if(player.GetComponent<player>().inRing)
             {
+                Debug.Log("This bitch moving");
                 enemyMovement.GoToPlayer();
             }
         }
