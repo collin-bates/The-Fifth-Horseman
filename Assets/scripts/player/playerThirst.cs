@@ -9,9 +9,13 @@ public class playerThirst : MonoBehaviour
     private int maxThirst = 100;
     public Slider thirstSlider;
 
+    public AudioClip deathClip;
+    AudioSource playerAudio;
+
     void Awake()
     {
         ResetPlayer();
+        playerAudio = GetComponent<AudioSource>();
     }
 
     void Start()
@@ -20,9 +24,10 @@ public class playerThirst : MonoBehaviour
         thirstSlider.value = thirst;
     }
 
-    void ResetPlayer()
+    public void ResetPlayer()
     {
         thirst = maxThirst / 5;
+        thirstSlider.value = thirst;
     }
 
     public int getThirst()
@@ -43,7 +48,11 @@ public class playerThirst : MonoBehaviour
         }
         else
         {
+            thirst -= damage;
             GetComponent<player>().isDead = true;
+            playerAudio.clip = deathClip;
+            playerAudio.Play();
+
         }
         thirstSlider.value = thirst;
     }
@@ -59,9 +68,5 @@ public class playerThirst : MonoBehaviour
             thirst = maxThirst;
         }
         thirstSlider.value = thirst;
-    }
-    // Update is called once per frame
-    void Update()
-    {
     }
 }

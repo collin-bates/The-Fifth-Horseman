@@ -10,6 +10,7 @@ TagManager:
   - riflePickup
   - purchase
   - finalFight
+  - Bot
   layers:
   - Default
   - TransparentFX

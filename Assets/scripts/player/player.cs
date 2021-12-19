@@ -7,6 +7,8 @@ public class player : MonoBehaviour
 {
     public TMP_Text saloonText;
 
+    public GameObject canvas;
+
     public GameObject gameHandler;
     public InventoryObject inventory;
     public bool pauseMovement = false;
@@ -19,12 +21,16 @@ public class player : MonoBehaviour
     int cost;
     int quantity;
 
-    public bool inRing = false;
+    public AudioClip saloonClip;
+    public AudioClip shopClip;
+    AudioSource playerAudio;
+
     public bool isDead;
 
     private void Awake()
     {
         playerRigidbody = GetComponent<Rigidbody>();
+        playerAudio = GetComponent<AudioSource>();
     }
 
     void Start()
@@ -33,7 +39,25 @@ public class player : MonoBehaviour
         {
             inventory.Container.RemoveAt(i);
         }
+        inventory.Container[0].amount = 160;
+
+        isDead = false;
+    }
+
+    public void Restart()
+    {
+        for (int i = inventory.Container.Count - 1; i > 0; i--)
+        {
+            inventory.Container.RemoveAt(i);
+        }
         inventory.Container[0].amount = 150;
+
+        for(int i = 1; i < canvas.transform.childCount; i++)
+        {
+            canvas.transform.GetChild(i).GetComponent<RectTransform>().localPosition = new Vector3(-1000, -1000, -1000);
+        }
+
+        isDead = false;
     }
 
     private void FixedUpdate()
@@ -59,7 +83,7 @@ public class player : MonoBehaviour
             speed = initialSpeed;
         }
 
-        if (!pauseMovement)
+        if (!gameHandler.GetComponent<GameHandler>().toggleEsc)
         {
             if (Input.GetKey(KeyCode.W))
             {
@@ -108,12 +132,16 @@ public class player : MonoBehaviour
     {
         if (other.CompareTag("saloon"))
         {
-            saloonText.text = "Welcome to the saloon, grab what you want.";
+            saloonText.text = "Welcome to the saloon, grab what you need.";
+            playerAudio.clip = saloonClip;
+            playerAudio.Play();
         }
 
         if (other.CompareTag("shop"))
         {
             saloonText.text = "I've got guns, yes I do. I've got guns, how 'bout you.";
+            playerAudio.clip = shopClip;
+            playerAudio.Play();
         }
 
         if (other.CompareTag("purchase"))
@@ -122,14 +150,14 @@ public class player : MonoBehaviour
 
             if(other.GetComponent<Item>().item.type == ItemType.Gun)
             {
-                cost = 100;
+                cost = 50;
                 quantity = 1;
             }
 
             if (other.GetComponent<Item>().item.type == ItemType.Food)
             {
-                cost = 15;
-                quantity = 5;
+                cost = 10;
+                quantity = 3;
             }
 
             if (other.GetComponent<Item>().item.type == ItemType.Drink)

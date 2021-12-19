@@ -59,7 +59,7 @@ public class deathScript : MonoBehaviour
             gameHandler.GetComponent<GameHandler>().deathDead = true;
             nav.enabled = false;
         }
-        if ( !enemyHealth.IsDead() && enemyHealth.currentHealth > 50)
+        if ( !enemyHealth.IsDead() && enemyHealth.currentHealth > enemyHealth.startingHealth / 2)
         {
             nav.enabled = true;
 

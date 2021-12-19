@@ -9,9 +9,13 @@ public class playerHunger : MonoBehaviour
     private int maxHunger = 100;
     public Slider HungerSlider;
 
+    public AudioClip deathClip;
+    AudioSource playerAudio;
+
     void Awake()
     {
         ResetPlayer();
+        playerAudio = GetComponent<AudioSource>();
     }
 
     void Start()
@@ -23,6 +27,7 @@ public class playerHunger : MonoBehaviour
     public void ResetPlayer()
     {
         hunger = maxHunger / 5;
+        HungerSlider.value = hunger;
     }
 
     public int getHunger()
@@ -45,7 +50,10 @@ public class playerHunger : MonoBehaviour
         }
         else
         {
+            hunger -= damage;
             GetComponent<player>().isDead = true;
+            playerAudio.clip = deathClip;
+            playerAudio.Play();
         }
 
         HungerSlider.value = hunger;

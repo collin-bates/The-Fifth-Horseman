@@ -9,10 +9,14 @@ public class playerHealth : MonoBehaviour
     private int maxHealth = 100;
     public Slider healthSlider;
 
+    public AudioClip deathClip;
+    public AudioClip hurtClip;
+    AudioSource playerAudio;
+
     void Awake()
     {
         ResetPlayer();
-        
+        playerAudio = GetComponent<AudioSource>();
     }
     void Start()
     {
@@ -23,6 +27,7 @@ public class playerHealth : MonoBehaviour
     public void ResetPlayer()
     {
         health = maxHealth / 5;
+        healthSlider.value = health;
     }
 
     public int getHealth()
@@ -35,16 +40,20 @@ public class playerHealth : MonoBehaviour
         return maxHealth;
     }
 
-    public void removeHealth( int damage)
+    public void removeHealth( int damage )
     {
         if (health - damage > 0)
         {
-            Debug.Log("I've been hit");
             health -= damage;
+            playerAudio.clip = hurtClip;
+            playerAudio.Play();
         }
         else
         {
+            health -= damage;
             GetComponent<player>().isDead = true;
+            playerAudio.clip = deathClip;
+            playerAudio.Play();
         }
         healthSlider.value = health;
     }
@@ -60,9 +69,5 @@ public class playerHealth : MonoBehaviour
             health = maxHealth;
         }
         healthSlider.value = health;
-    }
-
-    void Update()
-    {
     }
 }

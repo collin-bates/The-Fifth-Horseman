@@ -10,17 +10,22 @@ public class useItem : MonoBehaviour
     playerThirst thirstScript;
     playerHunger hungerScript;
 
+    public AudioClip drinkClip;
+    public AudioClip eatClip;
+    public AudioClip gunClip;
+    AudioSource playerAudio;
+
     int shootableMask;
     Ray shootRay = new Ray();
     RaycastHit shootHit;
 
-    // Start is called before the first frame update
     void Awake()
     {
         playerScript = GetComponent<player>();
         healthScript = GetComponent<playerHealth>();
         thirstScript = GetComponent<playerThirst>();
         hungerScript = GetComponent<playerHunger>();
+        playerAudio = GetComponent<AudioSource>();
 
         shootableMask = LayerMask.GetMask("Shootable", "Enemy");
     }
@@ -37,6 +42,10 @@ public class useItem : MonoBehaviour
                     healthScript.addHealth(inventory.Container[playerScript.selectedItem].item.healthValue);
                     hungerScript.addHunger(inventory.Container[playerScript.selectedItem].item.hungerValue);
                     inventory.Container[playerScript.selectedItem].amount -= 1;
+
+                    playerAudio.clip = eatClip;
+                    playerAudio.Play();
+
                 }
 
                 if (inventory.Container[playerScript.selectedItem].item.type.ToString() == "Drink" && inventory.Container[playerScript.selectedItem].amount > 0)
@@ -44,10 +53,16 @@ public class useItem : MonoBehaviour
                     healthScript.addHealth(inventory.Container[playerScript.selectedItem].item.healthValue);
                     thirstScript.addThirst(inventory.Container[playerScript.selectedItem].item.thirstValue);
                     inventory.Container[playerScript.selectedItem].amount -= 1;
+
+                    playerAudio.clip = drinkClip;
+                    playerAudio.Play();
                 }
                 if (inventory.Container[playerScript.selectedItem].item.type.ToString() == "Gun")
                 {
                     shoot();
+
+                    playerAudio.clip = gunClip;
+                    playerAudio.Play();
                 }
             }
         }
@@ -62,23 +77,11 @@ public class useItem : MonoBehaviour
         Debug.Log("Shoot");
         if (Physics.Raycast(shootRay, out shootHit, inventory.Container[playerScript.selectedItem].item.range, shootableMask))
         {
-            // Try and find an EnemyHealth script on the gameobject hit.
             enemyHealth enemyHealth = shootHit.collider.GetComponent<enemyHealth>();
 
-            // If the EnemyHealth component exist...
-            
-                // ... the enemy should take damage.
                 enemyHealth.TakeDamage(inventory.Container[playerScript.selectedItem].item.damage, shootHit.point);
 
             Debug.Log("Boom");
-            // Set the second position of the line renderer to the point the raycast hit.
-            //gunLine.SetPosition(1, shootHit.point);
-        }
-        // If the raycast didn't hit anything on the shootable layer...
-        else
-        {
-            // ... set the second position of the line renderer to the fullest extent of the gun's range.
-            //gunLine.SetPosition(1, shootRay.origin + shootRay.direction * range);
         }
     }
 }
