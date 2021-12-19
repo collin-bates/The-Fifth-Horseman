@@ -12,6 +12,7 @@ public class DisplayInventory : MonoBehaviour
     public int start;
     public int SpaceBetween;
     public int numberOf;
+
     Dictionary<InventorySlot, GameObject> itemsDisplayed = new Dictionary<InventorySlot, GameObject>();
 
 
@@ -19,6 +20,7 @@ public class DisplayInventory : MonoBehaviour
     void Start()
     {
         CreateDisplay();
+        currentItem = Instantiate(currentItem, Vector3.zero, Quaternion.identity, transform);
     }
 
     // Update is called once per frame
@@ -66,6 +68,10 @@ public class DisplayInventory : MonoBehaviour
             if(itemsDisplayed.ContainsKey(inventory.Container[i]))
             {
                 itemsDisplayed[inventory.Container[i]].GetComponentInChildren<TMP_Text>().text = inventory.Container[i].amount.ToString("n0");
+                if (i == selectedObject)
+                {
+                    currentItem.GetComponent<RectTransform>().localPosition = GetPosition(i);
+                }
             }
             else
             {
@@ -75,8 +81,6 @@ public class DisplayInventory : MonoBehaviour
                 itemsDisplayed.Add(inventory.Container[i], obj);
             }
         }
-        //var otherObj = Instantiate(currentItem, Vector3.zero, Quaternion.identity, transform);
-        //otherObj.GetComponent<RectTransform>().localPosition = GetPosition(selectedObject);
     }
 
     public Vector3 GetPosition(int i)

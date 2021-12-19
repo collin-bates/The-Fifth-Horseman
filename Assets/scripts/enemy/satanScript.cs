@@ -60,10 +60,10 @@ public class satanScript : MonoBehaviour
             gameHandler.GetComponent<GameHandler>().satanDead = true;
             nav.enabled = false;
         }
-        if ( !enemyHealth.IsDead() && enemyHealth.currentHealth > 50)
+        if (!enemyHealth.IsDead() && enemyHealth.currentHealth > enemyHealth.startingHealth / 2)
         {
 
-            if(healthTimer % 300000 == 10)
+            if (healthTimer % 300000 == 10)
             {
                 enemyHealth.currentHealth += 2;
             }
@@ -74,16 +74,16 @@ public class satanScript : MonoBehaviour
             GoToPlayer();
             WanderOrIdle();
         }
-        else if ( !enemyHealth.IsDead())
+        else if (!enemyHealth.IsDead())
         {
             destination.Set(nav.transform.position.x - player.transform.position.x, 0, nav.transform.position.z - player.transform.position.z);
             SetDestination(destination);
 
             nav.speed = 8;
 
-            if (healthTimer % 300000 == 5)
+            if (healthTimer % 300000 == 1)
             {
-                enemyHealth.currentHealth += 10;
+                enemyHealth.addHealth(30);
             }
         }
     }

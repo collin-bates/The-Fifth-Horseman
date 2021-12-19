@@ -15,7 +15,7 @@ public class EnemyMovement : MonoBehaviour
     float currentVision;
     Transform player;
     playerHealth playerHealth;
-    enemyHealth enemyHealth;
+    botScript enemyHealth;
     NavMeshAgent nav;
     public float timer = 0f;
 
@@ -25,9 +25,9 @@ public class EnemyMovement : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
         playerHealth = player.GetComponent<playerHealth>();
-        enemyHealth = GetComponent<enemyHealth>();
+        enemyHealth = GetComponent<botScript>();
         nav = GetComponent<NavMeshAgent>();
-
+        nav.speed = 0;
     }
 
     void OnEnable()
@@ -51,7 +51,7 @@ public class EnemyMovement : MonoBehaviour
         {
             nav.enabled = false;
         }
-        if(player.GetComponent<player>().inRing && !enemyHealth.IsDead())
+        if( !enemyHealth.IsDead())
         {
             nav.enabled = true;
 

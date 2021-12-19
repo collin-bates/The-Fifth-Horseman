@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class cameraSettings : MonoBehaviour
 {
+
+    public GameObject gameHandler;
     public GameObject player;
     public float turnSpeed = 4.0f;
     public float minTurnAngle = -90.0f;
@@ -20,7 +22,8 @@ public class cameraSettings : MonoBehaviour
 
     void FixedUpdate()
     {
-        if( !player.GetComponent<player>().pauseMovement) { 
+        if (!gameHandler.GetComponent<GameHandler>().toggleEsc)
+        { 
         transform.position = player.transform.position + offset;
         float y = Input.GetAxis("Mouse X") * turnSpeed;
         rotX += Input.GetAxis("Mouse Y") * turnSpeed / 2;
