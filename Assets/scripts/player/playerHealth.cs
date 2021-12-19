@@ -39,13 +39,14 @@ public class playerHealth : MonoBehaviour
     {
         if (health - damage > 0)
         {
+            Debug.Log("I've been hit");
             health -= damage;
         }
         else
         {
             GetComponent<player>().isDead = true;
         }
-        
+        healthSlider.value = health;
     }
 
     public void addHealth(int heal)

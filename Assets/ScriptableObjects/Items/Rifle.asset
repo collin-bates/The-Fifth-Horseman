@@ -15,7 +15,7 @@ MonoBehaviour:
   prefab: {fileID: 1784372045309977601, guid: 8fde30f97710d60418b009ad4281354d, type: 3}
   type: 2
   range: 100
-  damage: 35
+  damage: 25
   rof: 30
   maxBullets: 0
   healthValue: 0

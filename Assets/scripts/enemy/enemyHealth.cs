@@ -10,7 +10,7 @@ public class enemyHealth : MonoBehaviour
     public int scoreValue = 10;
     //public AudioClip deathClip;
 
-    int currentHealth;
+    public int currentHealth;
     //Animator anim;
     //AudioSource enemyAudio;
     ParticleSystem hitParticles;
@@ -64,13 +64,10 @@ public class enemyHealth : MonoBehaviour
 
             if (IsDead())
             {
-                
-                Debug.Log("This bitch dead");
                 Death();
             }
             else if(player.GetComponent<player>().inRing)
             {
-                Debug.Log("This bitch moving");
                 enemyMovement.GoToPlayer();
             }
         }

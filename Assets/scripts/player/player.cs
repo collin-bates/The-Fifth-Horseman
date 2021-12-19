@@ -7,6 +7,7 @@ public class player : MonoBehaviour
 {
     public TMP_Text saloonText;
 
+    public GameObject gameHandler;
     public InventoryObject inventory;
     public bool pauseMovement = false;
     public float turnSpeed = 4.0f;
@@ -147,7 +148,7 @@ public class player : MonoBehaviour
 
         if(other.CompareTag("finalFight"))
         {
-            inRing = true;
+            gameHandler.GetComponent<GameHandler>().currentBoss++;
         }
     }
 

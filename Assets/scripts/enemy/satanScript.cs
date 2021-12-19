@@ -3,14 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class EnemyMovement : MonoBehaviour
+public class satanScript : MonoBehaviour
 {
+    public GameObject gameHandler;
     public float visionRange = 10f;
     public float hearingRange = 20f;
     public float wanderDistance = 10f;
     public Vector2 idleTimeRange;
     [Range(0f, 1f)]
     public float psychicLevels = 0.2f;
+
+    float healthTimer = 0;
 
     float currentVision;
     Transform player;
@@ -28,6 +31,11 @@ public class EnemyMovement : MonoBehaviour
         enemyHealth = GetComponent<enemyHealth>();
         nav = GetComponent<NavMeshAgent>();
 
+    }
+
+    private void Start()
+    {
+        this.gameObject.SetActive(false);
     }
 
     void OnEnable()
@@ -49,15 +57,34 @@ public class EnemyMovement : MonoBehaviour
     {
         if (enemyHealth.IsDead())
         {
+            gameHandler.GetComponent<GameHandler>().satanDead = true;
             nav.enabled = false;
         }
-        if(player.GetComponent<player>().inRing && !enemyHealth.IsDead())
+        if ( !enemyHealth.IsDead() && enemyHealth.currentHealth > 50)
         {
+
+            if(healthTimer % 300000 == 10)
+            {
+                enemyHealth.currentHealth += 2;
+            }
+
             nav.enabled = true;
 
             LookForPlayer();
             GoToPlayer();
             WanderOrIdle();
+        }
+        else if ( !enemyHealth.IsDead())
+        {
+            destination.Set(nav.transform.position.x - player.transform.position.x, 0, nav.transform.position.z - player.transform.position.z);
+            SetDestination(destination);
+
+            nav.speed = 8;
+
+            if (healthTimer % 300000 == 5)
+            {
+                enemyHealth.currentHealth += 10;
+            }
         }
     }
 
