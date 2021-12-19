@@ -1,9 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class player : MonoBehaviour
 {
+    public TMP_Text saloonText;
 
     public InventoryObject inventory;
     public bool pauseMovement = false;
@@ -13,12 +15,24 @@ public class player : MonoBehaviour
     Vector3 movement;
     Rigidbody playerRigidbody;
     public int selectedItem = 1;
+    int cost;
+    int quantity;
 
+    public bool inRing = false;
     public bool isDead;
 
     private void Awake()
     {
         playerRigidbody = GetComponent<Rigidbody>();
+    }
+
+    void Start()
+    {
+        for(int i = inventory.Container.Count - 1; i > 0; i--)
+        {
+            inventory.Container.RemoveAt(i);
+        }
+        inventory.Container[0].amount = 150;
     }
 
     private void FixedUpdate()
@@ -88,4 +102,61 @@ public class player : MonoBehaviour
             selectedItem = 5;
         }
     }
+
+    void OnTriggerEnter( Collider other )
+    {
+        if (other.CompareTag("saloon"))
+        {
+            saloonText.text = "Welcome to the saloon, grab what you want.";
+        }
+
+        if (other.CompareTag("shop"))
+        {
+            saloonText.text = "I've got guns, yes I do. I've got guns, how 'bout you.";
+        }
+
+        if (other.CompareTag("purchase"))
+        {
+
+
+            if(other.GetComponent<Item>().item.type == ItemType.Gun)
+            {
+                cost = 100;
+                quantity = 1;
+            }
+
+            if (other.GetComponent<Item>().item.type == ItemType.Food)
+            {
+                cost = 15;
+                quantity = 5;
+            }
+
+            if (other.GetComponent<Item>().item.type == ItemType.Drink)
+            {
+                cost = 5;
+                quantity = 1;
+            }
+
+
+            if ( inventory.Container[0].amount >= cost)
+            {
+                inventory.removeCoin(cost);
+                inventory.AddItem(other.GetComponent<Item>().item, quantity);
+            }
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("saloon"))
+        {
+            saloonText.text = "";
+        }
+
+        if (other.CompareTag("shop"))
+        {
+            saloonText.text = "";
+        }
+    }
+
 }

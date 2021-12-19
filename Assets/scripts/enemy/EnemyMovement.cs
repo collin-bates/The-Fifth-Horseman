@@ -32,7 +32,7 @@ public class EnemyMovement : MonoBehaviour
 
     void OnEnable()
     {
-        nav.enabled = true;
+        nav.enabled = false;
         ClearPath();
         ScaleVision(1f);
         IsPsychic();
@@ -51,9 +51,14 @@ public class EnemyMovement : MonoBehaviour
         {
             nav.enabled = false;
         }
-        LookForPlayer();
-        WanderOrIdle();
-        
+        if(player.GetComponent<player>().inRing)
+        {
+            nav.enabled = true;
+            Debug.Log("This bitch moving");
+
+            LookForPlayer();
+            WanderOrIdle();
+        }
     }
 
     void OnDestroy()
